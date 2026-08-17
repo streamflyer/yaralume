@@ -77,10 +77,31 @@ code with the **Expo Go** app on your phone.
 4. Restart `npx expo start`. Check-ins now sync for signed-in users and events
    load from your `events` table (approved + upcoming only).
 
-**Auth note:** the scaffold stores check-ins locally and only syncs when a user
-is signed in. For the simplest path, enable **Anonymous sign-ins** in Supabase
-(Authentication → Providers) and call `supabase.auth.signInAnonymously()` on
-first launch, or add a proper email/magic-link sign-in screen later.
+**Auth: email magic link.** The **Konto** screen (linked from the Space header)
+lets a user type their email and get a passwordless sign-in link — no password,
+no separate login screen. Check-ins push to Supabase on save, and pull + merge
+back down (`syncCheckIns()`) whenever the Space tab loads, so a reinstall or a
+second device recovers the same history.
+
+To make the magic link work, add its redirect URL in your Supabase project
+under **Authentication → URL Configuration → Redirect URLs**:
+
+- `yaralume://auth/callback` — native app (Expo dev client / TestFlight / prod)
+- `http://localhost:8081/auth/callback` — local web testing (`npx expo start --web`)
+- `https://your-vercel-domain/auth/callback` — once deployed, add the same path
+  on your production web URL
+
+The **Email** provider is on by default in new Supabase projects, so
+`signInWithOtp` works out of the box — no extra provider setup needed.
+
+**Email rate limits.** Supabase's built-in email sender is meant for testing
+only and caps out fast (a handful of sends per hour) — you'll hit
+`email rate limit exceeded` well before any real user would. Before shipping
+(or if development testing keeps tripping the limit), add your own mail
+provider under **Authentication → Settings → SMTP Settings** (e.g. Resend,
+Postmark, SendGrid — any SMTP-compatible provider works). That switches the
+project off Supabase's shared/testing relay and lifts the limit to whatever
+your provider allows.
 
 ---
 
@@ -123,8 +144,8 @@ when you're ready for the beta.)
 
 ## Build order (from the plan)
 
-1. **Wellbeing Space** — ✅ scaffolded. Refine tone, expand exercises to 12–15,
-   add anonymous auth + cloud sync.
+1. **Wellbeing Space** — ✅ scaffolded, ✅ cloud sync via email magic link.
+   Refine tone, expand exercises to 12–15.
 2. **Creators** — ✅ directory scaffolded. Replace placeholders with real,
    verified voices (incl. Swiss/DACH).
 3. **Events** — ✅ list + filter scaffolded. Seed all 5 cities richly; add a

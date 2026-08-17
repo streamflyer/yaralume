@@ -29,6 +29,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c6d60ce7-81b4-431e-a941-811d8583140a"
+      }
+    },
+    "owner": "streamflyer"
   }
 }

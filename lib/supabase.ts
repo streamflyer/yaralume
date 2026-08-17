@@ -28,6 +28,9 @@ export const supabase = createClient(
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: Platform.OS === "web",
+      // PKCE lets the magic-link email carry a short-lived `code` instead of
+      // a raw access token, and works for both web and native deep links.
+      flowType: "pkce",
     },
   }
 );

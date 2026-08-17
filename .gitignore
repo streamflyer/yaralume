@@ -19,6 +19,9 @@ expo-env.d.ts
 .env
 .env.local
 
+# claude code (local-only permissions, machine-specific)
+.claude/settings.local.json
+
 # macOS
 .DS_Store
 

@@ -9,7 +9,7 @@ import {
 import { Link, useFocusEffect, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, font, radius, spacing } from "@/lib/theme";
-import { getCheckIns, hasCheckedInToday, type CheckIn } from "@/lib/checkins";
+import { syncCheckIns, hasCheckedInToday, type CheckIn } from "@/lib/checkins";
 import { exercises } from "@/content/exercises";
 import MoodTrend from "@/components/MoodTrend";
 import ExerciseCard from "@/components/ExerciseCard";
@@ -29,7 +29,7 @@ export default function SpaceScreen() {
   const [doneToday, setDoneToday] = useState(false);
 
   const load = useCallback(async () => {
-    setCheckIns(await getCheckIns());
+    setCheckIns(await syncCheckIns());
     setDoneToday(await hasCheckedInToday());
   }, []);
 
@@ -54,11 +54,18 @@ export default function SpaceScreen() {
     >
       <View style={styles.header}>
         <Text style={styles.hello}>{greeting()}.</Text>
-        <Link href="/help" asChild>
-          <Pressable hitSlop={8}>
-            <Text style={styles.help}>Hilfe</Text>
-          </Pressable>
-        </Link>
+        <View style={styles.headerLinks}>
+          <Link href="/account" asChild>
+            <Pressable hitSlop={8}>
+              <Text style={styles.account}>Konto</Text>
+            </Pressable>
+          </Link>
+          <Link href="/help" asChild>
+            <Pressable hitSlop={8}>
+              <Text style={styles.help}>Hilfe</Text>
+            </Pressable>
+          </Link>
+        </View>
       </View>
 
       <Text style={styles.sub}>
@@ -113,6 +120,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   hello: { fontSize: font.h1, color: colors.text, fontWeight: "700" },
+  headerLinks: { flexDirection: "row", alignItems: "center", gap: spacing.md },
+  account: { fontSize: font.small, color: colors.textMuted, fontWeight: "600" },
   help: { fontSize: font.small, color: colors.help, fontWeight: "600" },
   sub: { fontSize: font.body, color: colors.textMuted, lineHeight: 22 },
   checkInCta: {
