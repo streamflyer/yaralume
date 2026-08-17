@@ -35,6 +35,10 @@ export default function RootLayout() {
             options={{ presentation: "modal", title: "Konto" }}
           />
           <Stack.Screen
+            name="submit-event"
+            options={{ presentation: "modal", title: "Anlass einreichen" }}
+          />
+          <Stack.Screen
             name="auth/callback"
             options={{ headerShown: false }}
           />
