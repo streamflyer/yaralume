@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "ClimateBuddy",
-    "slug": "climatebuddy",
+    "name": "Yaralume",
+    "slug": "yaralume",
     "version": "0.1.0",
     "orientation": "portrait",
-    "scheme": "climatebuddy",
+    "scheme": "yaralume",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -13,10 +13,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "ch.climatebuddy.app"
+      "bundleIdentifier": "ch.yaralume.app"
     },
     "android": {
-      "package": "ch.climatebuddy.app"
+      "package": "ch.yaralume.app"
     },
     "web": {
       "bundler": "metro",

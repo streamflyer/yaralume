@@ -9,7 +9,7 @@ export type CheckIn = {
   created_at: string; // ISO
 };
 
-const KEY = "climatebuddy.checkins.v1";
+const KEY = "yaralume.checkins.v1";
 
 // Local-first: always store on device so the app works offline / pre-backend.
 // When Supabase is configured and the user is signed in, we also upsert to the
@@ -48,7 +48,7 @@ export async function addCheckIn(mood: number, note?: string): Promise<CheckIn> 
       }
     } catch (e) {
       // Never block the user on a sync failure; local copy is source of truth.
-      console.warn("[ClimateBuddy] check-in sync failed", e);
+      console.warn("[Yaralume] check-in sync failed", e);
     }
   }
 

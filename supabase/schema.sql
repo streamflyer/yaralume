@@ -1,4 +1,4 @@
--- ClimateBuddy — Supabase schema (v1)
+-- Yaralume — Supabase schema (v1)
 -- Run this in the Supabase SQL editor (Dashboard → SQL → New query).
 -- Covers the MVP: private check-ins, curated events, and creators.
 -- Community tables are intentionally deferred (plan §7).

@@ -13,7 +13,7 @@ if (!isSupabaseConfigured) {
   // Non-fatal: the app runs in "local-only" mode so you can develop the
   // Wellbeing Space UI before wiring the backend. Fill in .env to enable sync.
   console.warn(
-    "[ClimateBuddy] Supabase not configured — running in local-only mode. " +
+    "[Yaralume] Supabase not configured — running in local-only mode. " +
       "Copy .env.example to .env and add your Supabase URL + anon key."
   );
 }

@@ -29,7 +29,7 @@ export async function fetchUpcomingEvents(): Promise<ClimateEvent[]> {
         return data as ClimateEvent[];
       }
     } catch (e) {
-      console.warn("[ClimateBuddy] events fetch failed, using seed", e);
+      console.warn("[Yaralume] events fetch failed, using seed", e);
     }
   }
   // Local fallback: future-dated seed events, soonest first.

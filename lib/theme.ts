@@ -1,4 +1,4 @@
-// ClimateBuddy design tokens.
+// Yaralume design tokens.
 // Principle 3 — "Calm by design": soft, natural palette, generous spacing,
 // NO alarm-red accents used for engagement. Red is reserved strictly for the
 // crisis / help path so it keeps its meaning.

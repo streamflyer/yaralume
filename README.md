@@ -1,4 +1,4 @@
-# ClimateBuddy 🌱
+# Yaralume 🌱
 
 A calm companion app for people worried about climate change. The **Wellbeing
 Space** is the front door — a private daily check-in, grounding exercises, and a
@@ -6,10 +6,10 @@ gentle bridge from *feeling* to *doing* — wired to news, local events (Zürich
 Bern, Winterthur, Basel, St. Gallen), and curated voices.
 
 Built with **Expo (React Native)** for iOS, Android, and web from one codebase,
-with **Supabase** as the backend. See `../ClimateBuddy_Product_Plan.md` for the
+with **Supabase** as the backend. See `../Yaralume_Product_Plan.md` for the
 full product plan.
 
-> ⚠️ **Not therapy.** ClimateBuddy offers everyday support, not clinical
+> ⚠️ **Not therapy.** Yaralume offers everyday support, not clinical
 > treatment or crisis services. The Help screen signposts to Swiss resources
 > (Die Dargebotene Hand 143, Pro Juventute 147, Notruf 144/112). Keep this
 > framing everywhere.
@@ -19,7 +19,7 @@ full product plan.
 ## What's in this scaffold
 
 ```
-climatebuddy/
+yaralume/
 ├── app/                      # expo-router screens
 │   ├── _layout.tsx           # root stack (tabs + modals)
 │   ├── (tabs)/               # 🌱 Space · 📰 News · 📍 Events · 🎙️ Stimmen
@@ -49,7 +49,7 @@ Prerequisites: **Node 18+** and the Expo tooling (`npx` is enough — no global
 install needed).
 
 ```bash
-cd climatebuddy
+cd yaralume
 npm install
 npx expo start
 ```
@@ -87,12 +87,12 @@ first launch, or add a proper email/magic-link sign-in screen later.
 ## Push to GitHub
 
 ```bash
-cd climatebuddy
+cd yaralume
 git init
 git add .
-git commit -m "ClimateBuddy scaffold: Wellbeing Space + Supabase"
+git commit -m "Yaralume scaffold: Wellbeing Space + Supabase"
 git branch -M main
-git remote add origin git@github.com:<your-username>/climatebuddy.git
+git remote add origin git@github.com:<your-username>/yaralume.git
 git push -u origin main
 ```
 

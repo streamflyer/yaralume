@@ -1,12 +1,12 @@
 // Crisis & support resources (Switzerland, German).
 //
-// IMPORTANT (plan §10): ClimateBuddy is NOT therapy and NOT a crisis service.
+// IMPORTANT (plan §10): Yaralume is NOT therapy and NOT a crisis service.
 // This copy signposts to real Swiss help. Surface it (a) always accessible from
 // the Wellbeing Space header, and (b) proactively after a very low check-in.
 // Do not make promises about confidentiality on the app's behalf.
 
 export const disclaimer =
-  "ClimateBuddy ist Unterstützung im Alltag – aber keine Therapie und kein Notfalldienst. " +
+  "Yaralume ist Unterstützung im Alltag – aber keine Therapie und kein Notfalldienst. " +
   "Wenn es dir sehr schlecht geht, wende dich bitte an eine der folgenden Stellen.";
 
 export type Resource = {
