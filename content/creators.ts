@@ -4,15 +4,18 @@
 // Grouped by "vibe" so worried users can pick what helps them, not just "more".
 
 export type CreatorVibe = "science" | "solutions" | "policy" | "local";
+export type CreatorLanguage = "de" | "gsw" | "fr" | "it" | "en";
 
 export type Creator = {
   id: string;
   name: string;
   vibe: CreatorVibe;
+  language: CreatorLanguage; // language of the creator's content, not the UI
   platform: string; // e.g. "Instagram", "YouTube", "Newsletter", "Podcast"
   handle?: string;
   url: string;
   blurb: string;
+  image_url?: string; // optional; from the "creator-images" Supabase Storage bucket
 };
 
 export const vibeLabels: Record<CreatorVibe, string> = {
@@ -22,12 +25,21 @@ export const vibeLabels: Record<CreatorVibe, string> = {
   local: "Schweiz & lokal",
 };
 
+export const languageLabels: Record<CreatorLanguage, string> = {
+  de: "Deutsch",
+  gsw: "Schweizerdeutsch",
+  fr: "Français",
+  it: "Italiano",
+  en: "English",
+};
+
 // NOTE: placeholder entries — confirm handles/links before shipping.
 export const creators: Creator[] = [
   {
     id: "c-science-1",
     name: "Climate scientist explainer",
     vibe: "science",
+    language: "de",
     platform: "YouTube",
     url: "https://www.youtube.com/",
     blurb: "Verständliche Erklärungen zu Klimadaten – ohne Panikmache.",
@@ -36,6 +48,7 @@ export const creators: Creator[] = [
     id: "c-solutions-1",
     name: "Solutions-focused creator",
     vibe: "solutions",
+    language: "de",
     platform: "Instagram",
     url: "https://www.instagram.com/",
     blurb: "Fokus auf Fortschritte, Technologien und Menschen, die handeln.",
@@ -44,6 +57,7 @@ export const creators: Creator[] = [
     id: "c-policy-1",
     name: "Climate policy journalist",
     vibe: "policy",
+    language: "de",
     platform: "Newsletter",
     url: "https://www.example.com/",
     blurb: "Ordnet politische Entscheide ein – ruhig und faktenbasiert.",
@@ -52,6 +66,7 @@ export const creators: Creator[] = [
     id: "c-local-1",
     name: "Schweizer Klima-Stimme",
     vibe: "local",
+    language: "de",
     platform: "Podcast",
     url: "https://www.example.ch/",
     blurb: "Klimathemen aus Schweizer Perspektive, auf Deutsch.",

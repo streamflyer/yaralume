@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { useFocusEffect, Stack } from "expo-router";
+import { View, Text, ScrollView, Pressable, StyleSheet } from "react-native";
+import { useFocusEffect, Stack, Link } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { colors, font, radius, spacing } from "@/lib/theme";
-import { fetchUpcomingEvents, type ClimateEvent } from "@/lib/events";
+import { fetchUpcomingEvents, CITIES as EVENT_CITIES, type ClimateEvent } from "@/lib/events";
 
-const CITIES = ["Alle", "Zürich", "Bern", "Winterthur", "Basel", "St. Gallen"];
+const CITIES = ["Alle", ...EVENT_CITIES];
 
 export default function EventsScreen() {
   const insets = useSafeAreaInsets();
@@ -33,7 +33,18 @@ export default function EventsScreen() {
       style={{ backgroundColor: colors.bg }}
       contentContainerStyle={{ padding: spacing.md, paddingTop: insets.top + spacing.sm, gap: spacing.md, paddingBottom: spacing.xxl }}
     >
-      <Stack.Screen options={{ title: "Events" }} />
+      <Stack.Screen
+        options={{
+          title: "Events",
+          headerRight: () => (
+            <Link href="/submit-event" asChild>
+              <Pressable hitSlop={8}>
+                <Text style={styles.submitLink}>+ Einreichen</Text>
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
       <Text style={styles.lead}>
         Streiks, Podien und Aktionen in deiner Nähe.
       </Text>
@@ -55,8 +66,11 @@ export default function EventsScreen() {
 
       {!loading && shown.length === 0 && (
         <Text style={styles.muted}>
-          Aktuell keine Anlässe in {city}. Schau bald wieder vorbei – oder reiche
-          selbst einen ein.
+          Aktuell keine Anlässe in {city}. Schau bald wieder vorbei – oder{" "}
+          <Link href="/submit-event" style={styles.inlineLink}>
+            reiche selbst einen ein
+          </Link>
+          .
         </Text>
       )}
 
@@ -86,6 +100,13 @@ export default function EventsScreen() {
 
 const styles = StyleSheet.create({
   lead: { fontSize: font.body, color: colors.textMuted, lineHeight: 22 },
+  submitLink: {
+    fontSize: font.small,
+    color: colors.primary,
+    fontWeight: "600",
+    marginRight: spacing.sm,
+  },
+  inlineLink: { color: colors.primary, fontWeight: "600" },
   chip: {
     fontSize: font.small,
     color: colors.textMuted,

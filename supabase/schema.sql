@@ -79,13 +79,22 @@ create table if not exists public.creators (
   id         uuid primary key default gen_random_uuid(),
   name       text not null,
   vibe       text not null check (vibe in ('science','solutions','policy','local')),
+  language   text not null default 'de' check (language in ('de','gsw','fr','it','en')),
   platform   text not null,
   handle     text,
   url        text not null,
   blurb      text,
+  image_url  text,
   active     boolean not null default true,
   created_at timestamptz not null default now()
 );
+
+-- Running this again on an existing project? The create table above is a
+-- no-op then — these backfill the columns onto the table you already have.
+alter table public.creators add column if not exists image_url text;
+alter table public.creators
+  add column if not exists language text not null default 'de'
+  check (language in ('de','gsw','fr','it','en'));
 
 alter table public.creators enable row level security;
 
@@ -93,6 +102,17 @@ drop policy if exists "active creators readable" on public.creators;
 create policy "active creators readable" on public.creators
   for select using (active = true);
 -- You manage this table from the dashboard; no client writes.
+
+-- =========================================================
+-- 4. CREATOR IMAGES  (public Storage bucket — optional per creator)
+-- =========================================================
+-- Public bucket: object reads bypass Storage RLS entirely, so no SELECT
+-- policy is needed for the app to display images. Uploads/deletes happen
+-- from the Supabase Studio Storage UI (your own dashboard session), same
+-- "no client writes" model as the creators table itself.
+insert into storage.buckets (id, name, public)
+values ('creator-images', 'creator-images', true)
+on conflict (id) do nothing;
 
 -- =========================================================
 -- Done. Community (threads, posts, reports) comes in a later migration.
